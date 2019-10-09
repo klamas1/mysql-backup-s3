@@ -30,7 +30,8 @@ fi
 
 export S3_ACL=${S3_ACL:-private}
 
-test $MOUNT_POINT
+test ${MOUNT_POINT}
+umount ${MOUNT_POINT}
 rm -rf ${MOUNT_POINT}
 mkdir -p ${MOUNT_POINT}
 
