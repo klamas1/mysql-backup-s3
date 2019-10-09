@@ -3,7 +3,7 @@
 all: build release
 
 build:
-	@docker build -t klamas1/mysql-backup-s3:latest .
+	@docker build -t klamas1/mysql-backup-s3:latest ./
 
 release:
 	@docker push klamas1/mysql-backup-s3:latest
