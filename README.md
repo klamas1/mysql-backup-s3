@@ -41,9 +41,6 @@ Use [s3fs](https://github.com/s3fs-fuse/s3fs-fuse) with Alpine Linux to mount an
 Uses environment variables to configure.
 
 ```shell
-AWS_ACCESS_KEY_ID= # required unless IAM_ROLE is set
-AWS_SECRET_ACCESS_KEY= # required unless IAM_ROLE is set
-URL=https://s3.amazonaws.com # default, optional
 S3_ACL=private # default, optional
 S3_BUCKET=test-bucket # required
 IAM_ROLE= # optional IAM role name, for usage on EC2.

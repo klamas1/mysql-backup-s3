@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # install s3fs-fuse
 apk add fuse alpine-sdk automake autoconf libxml2-dev fuse-dev curl-dev git bash;

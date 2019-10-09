@@ -1,10 +1,6 @@
 FROM alpine:3.8
 LABEL maintainer="Klamas <klamas1@gmail.com>"
 
-COPY install.sh run.sh backup.sh ./
-
-RUN sh install.sh && rm install.sh;
-
 ARG S3FS_VERSION=v1.79
 
 RUN MYSQLDUMP_OPTIONS="--quote-names --quick --add-drop-table --add-locks --allow-keywords --disable-keys --extended-insert --single-transaction --create-options --comments --net_buffer_length=16384" \
@@ -26,6 +22,11 @@ RUN MYSQLDUMP_OPTIONS="--quote-names --quick --add-drop-table --add-locks --allo
     MULTI_FILES=no \
     SCHEDULE=**None**
 
+COPY install.sh run.sh backup.sh ./
+
+RUN sh install.sh && rm install.sh;
+
+
 VOLUME /var/s3
 
-CMD ["sh", "run.sh"]
+CMD ["/bin/bash", "run.sh"]
