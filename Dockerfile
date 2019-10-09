@@ -14,7 +14,6 @@ ENV MYSQLDUMP_OPTIONS="--quote-names --quick --add-drop-table --add-locks --allo
     S3_BUCKET="**None**" \
     S3_REGION="us-west-1" \
     S3_ENDPOINT="https://s3.amazonaws.com" \
-    S3_S3V4="no" \
     S3_PREFIX="backup" \
     IAM_ROLE="**None**" \
     MOUNT_POINT="/var/s3" \
