@@ -1,7 +1,7 @@
 FROM alpine:3.8
 LABEL maintainer="Klamas <klamas1@gmail.com>"
 
-COPY install.sh run.sh backup.sh .
+COPY install.sh run.sh backup.sh ./
 
 RUN sh install.sh && rm install.sh;
 
