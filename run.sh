@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ "${SCHEDULE}" = "**None**" ]; then
-  /bin/bash backup.sh
+  sh backup.sh
 else
-  exec go-cron "$SCHEDULE" /bin/bash backup.sh
+  exec go-cron "$SCHEDULE" sh backup.sh
 fi
