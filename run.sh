@@ -1,7 +1,5 @@
 #! /bin/sh
 
-set -e
-
 if [ "${SCHEDULE}" = "**None**" ]; then
   sh backup.sh
 else
