@@ -25,4 +25,5 @@ chmod u+x /usr/local/bin/go-cron
 apk del curl
 
 # cleanup
+apk del alpine-sdk automake autoconf libxml2-dev curl-dev git;
 rm -rf /var/cache/apk/*

@@ -84,11 +84,7 @@ if [ ! -z "$(echo $MULTI_FILES | grep -i -E "(yes|true|1)")" ]; then
     mysqldump $MYSQL_HOST_OPTS $MYSQLDUMP_OPTIONS --databases $DB | gzip > $DUMP_FILE
 
     if [ $? == 0 ]; then
-      if [ "${S3_FILENAME}" == "**None**" ]; then
-        S3_FILE="${DUMP_START_TIME}.${DB}.sql.gz"
-      else
-        S3_FILE="${S3_FILENAME}.${DB}.sql.gz"
-      fi
+      S3_FILE="${DUMP_START_TIME}.${DB}.sql.gz"
 
       copy_s3 $DUMP_FILE $S3_FILE
     else
@@ -103,16 +99,20 @@ else
   mysqldump $MYSQL_HOST_OPTS $MYSQLDUMP_OPTIONS $MYSQLDUMP_DATABASE | gzip > $DUMP_FILE
 
   if [ $? == 0 ]; then
-    if [ "${S3_FILENAME}" == "**None**" ]; then
-      S3_FILE="${DUMP_START_TIME}.dump.sql.gz"
-    else
-      S3_FILE="${S3_FILENAME}.sql.gz"
-    fi
+    S3_FILE="${DUMP_START_TIME}.dump.sql.gz"
 
     copy_s3 $DUMP_FILE $S3_FILE
   else
     >&2 echo "Error creating dump of all databases"
   fi
+fi
+
+if [ "${ROTATE}" != "**None**" ]; then
+  if [ -n "${ROTATE_PLAN}" ]; then
+    rotate-backups --dry-run ${ROTATE_PLAN} ${MOUNT_POINT}/${S3_PREFIX}/ && \
+    rotate-backups ${ROTATE_PLAN} ${MOUNT_POINT}/${S3_PREFIX}/ || \
+    echo "Rotation is failed";
+  fi;
 fi
 
 umount ${MOUNT_POINT}

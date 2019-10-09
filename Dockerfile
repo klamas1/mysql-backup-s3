@@ -16,16 +16,17 @@ ENV MYSQLDUMP_OPTIONS="--quote-names --quick --add-drop-table --add-locks --allo
     S3_ENDPOINT="https://s3.amazonaws.com" \
     S3_S3V4="no" \
     S3_PREFIX="backup" \
-    S3_FILENAME="**None**" \
     IAM_ROLE="**None**" \
     MOUNT_POINT="/var/s3" \
     MULTI_FILES="no" \
-    SCHEDULE="**None**"
+    SCHEDULE="**None**" \
+    ROTATE="**None**" \
+    ROTATE_PLAN="-d6 -w3 -m3"
+    #instructions https://pypi.org/project/rotate-backups/
 
 COPY install.sh run.sh backup.sh ./
 
 RUN sh install.sh && rm install.sh;
-
 
 VOLUME /var/s3
 
