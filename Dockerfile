@@ -1,7 +1,7 @@
 FROM alpine:3.8
 LABEL maintainer="Klamas <klamas1@gmail.com>"
 
-ARG S3FS_VERSION=v1.79
+ARG S3FS_VERSION=v1.85
 
 ENV MYSQLDUMP_OPTIONS="--quote-names --quick --add-drop-table --add-locks --allow-keywords --disable-keys --extended-insert --single-transaction --create-options --comments --net_buffer_length=16384" \
     MYSQLDUMP_DATABASE="--all-databases" \
